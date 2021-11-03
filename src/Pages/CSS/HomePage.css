@@ -1,0 +1,48 @@
+.homepage {
+  width: 100%;
+  height: 100%;
+}
+
+.homepage > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.homepage_overlay {
+  position: absolute;
+  top: 0;
+  margin-top: 5%;
+  width: 100%;
+  height: 90%;
+}
+
+.homepage_folder_files_location {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin-left: 2%;
+}
+
+.homepage_folder_files_location > ul > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  margin-top: 30%;
+  width: 90px;
+  height: 100px;
+  /* margin-left: 1.5%; */
+}
+
+.homepage_folder_files_location > ul > li:focus {
+  background-color: rgba(0, 0, 255, 0.37);
+  border: 1px solid blue;
+  color: black;
+}
+
+.homepage_folder_files_location > ul > li > span {
+  margin-top: 10%;
+  font-size: 15px;
+}

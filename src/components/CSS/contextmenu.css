@@ -1,0 +1,40 @@
+.contextMenu {
+  background: rgba(0, 0, 0, 0.71);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+  border-radius: 8px;
+}
+
+.contextMenu > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.contextMenu > div {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.contextMenu > div > span {
+  margin-left: 10%;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.contextMenu > div > span:active {
+  color: yellow;
+  width: 100%;
+}
+
+.cm_second > span:last-child {
+  margin-top: 2%;
+}
+
+.cm_fourth > span:last-child {
+  margin-top: 2%;
+}
+
+.cm_hr {
+  width: 40%;
+  margin-left: 25%;
+}

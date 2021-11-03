@@ -1,0 +1,25 @@
+/* Viga */
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+/* Raleway */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
+
+:root {
+  /* Taskbar */
+  --bg: #000;
+
+  /* Fonts */
+  --viga: "Viga", sans-serif;
+  --raleway: "Raleway", sans-serif;
+}
+
+.span-white {
+  color: white;
+}
+
+.ff_viga {
+  font-family: var(--viga);
+}
+
+.ff_raleway {
+  font-family: var(--raleway);
+}
