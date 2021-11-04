@@ -1,7 +1,9 @@
 <template>
   <div class="contextMenu">
     <div tabindex="1" class="cm_first">
-      <span class="span-white ff_raleway">New Folder</span>
+      <span @click="createNewFolder()" class="span-white ff_raleway">
+        New Folder
+      </span>
     </div>
     <hr class="cm_hr" />
     <div class="cm_second">
@@ -21,7 +23,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      // creaeNewFolderNow: false,
+    };
+  },
+  methods: {
+    createNewFolder() {
+      this.$emit("creatingNewFolder", true);
+    },
+  },
+};
 </script>
 
 <style scoped>
