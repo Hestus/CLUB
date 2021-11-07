@@ -1,9 +1,9 @@
 <template>
-  <Compiler />
+  <compiler />
 </template>
 
 <script>
-import Compiler from "./Pages/Compiler.vue";
+import Compiler from "../Pages/Compiler.vue";
 
 export default {
   name: "App",

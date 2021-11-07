@@ -1,5 +1,9 @@
 <template>
-  <div @contextmenu="handler($event)" @click="closeHandler()" class="homepage">
+  <div
+    @click.right="handler($event)"
+    @click="closeHandler()"
+    class="homepage"
+  >
     <img src="../../assets/images/wallpaper.jpg" alt="wallpaper" />
 
     <!-- Files and folder location -->
@@ -7,15 +11,17 @@
       <div class="homepage_folder_files_location">
         <ul>
           <li
-            @click="closeHandler"
+            @click="closeHandler()"
             tabindex="1"
-            v-for="folder in folders"
-            :key="folder.id"
+            v-for="(folder, index) in folders"
+            :key="index"
+            @click.right="handlerFolder($event)"
           >
             <img :src="folder.img" alt="..." />
             <span class="ff_viga span-white">{{ folder.folder_name }}</span>
           </li>
         </ul>
+        <!-- Context Menu -->
         <ContextMenu
           @creatingNewFolder="CreatedNewFolder($event)"
           :style="{
@@ -27,8 +33,21 @@
           }"
           v-if="context_menu === true"
         />
+        <!-- Context Menu Folder -->
+        <ContextMenuFolder
+          :style="{
+            position: 'absolute',
+            width: '200px',
+            height: '250px',
+            left: mouseX,
+            top: mouseY,
+          }"
+          v-if="context_menu_folder === true"
+        />
+        <!-- Context Menu Taskbar -->
       </div>
     </div>
+    <!-- Create New folder inside ContextMent of home page -->
     <NewFolder
       @closeNewFolderNow="closedNewFolder($event)"
       @closeNewFolderOnHandleSubmit="closedNewFolderEvent($event)"
@@ -39,14 +58,17 @@
 
 <script>
 import ContextMenu from "../../components/ContextMenu/ContextMenu.vue";
+import ContextMenuFolder from "../../components/ContextMenu/ContextMenuFolder.vue";
 import NewFolder from "../../components/NewFolder/NewFolder.vue";
 
 export default {
-  components: { ContextMenu, NewFolder },
+  components: { ContextMenu, NewFolder, ContextMenuFolder },
   data() {
     return {
       // Opening Context Menu
       context_menu: false,
+      context_menu_folder: false,
+      context_menu_taskbar: false,
       // mouse click location
       mouseX: 0,
       mouseY: 0,
@@ -68,8 +90,20 @@ export default {
     };
   },
   methods: {
+    // Right Click on homepage Handler
     handler(e) {
-      this.context_menu = true;
+      if (this.context_menu_folder === false) {
+        this.context_menu = true;
+        this.mouseX = e.clientX + "px";
+        this.mouseY = e.clientY - 60 + "px";
+        console.log(this.mouseX, this.mouseY);
+        e.preventDefault();
+      }
+    },
+    // Right Click over folder handler
+    handlerFolder(e) {
+      this.context_menu = false;
+      this.context_menu_folder = true;
       this.mouseX = e.clientX + "px";
       this.mouseY = e.clientY - 60 + "px";
       console.log(this.mouseX, this.mouseY);
@@ -77,6 +111,7 @@ export default {
     },
     closeHandler() {
       this.context_menu = false;
+      this.context_menu_folder = false;
     },
     CreatedNewFolder(foldercreateValue) {
       this.CreateNewFolder = foldercreateValue;

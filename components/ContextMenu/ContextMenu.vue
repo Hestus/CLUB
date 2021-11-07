@@ -38,5 +38,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../CSS/contextmenu.css";
+@import "../CSS/ContextMenu/contextmenu.css";
 </style>

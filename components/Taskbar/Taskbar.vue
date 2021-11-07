@@ -1,5 +1,9 @@
 <template>
-  <div class="taskbar flex">
+  <div
+    @click.right="handler($event)"
+    @click="closeHandler()"
+    class="taskbar flex"
+  >
     <!-- Logo -->
     <div class="taskbar_logo flex">
       <!-- Logo of the CLUB -->
@@ -44,18 +48,37 @@
         <span class="span-white ff_viga">{{ time }}{{ " " }}{{ am_pm }}</span>
       </div>
     </div>
+    <!-- Context meny Taskbar -->
+    <ContextMenuTaskbar
+      :style="{
+        position: 'absolute',
+        width: '150px',
+        height: '50px',
+        left: mouseX,
+        top: mouseY,
+      }"
+      v-if="context_menu_taskbar === true"
+    />
   </div>
 </template>
 
 <script>
 // Date Format
 import dateFormat from "dateformat";
+import ContextMenuTaskbar from "../ContextMenu/ContextMenuTaskbar.vue";
+
 const now = new Date();
 
 export default {
-  components: {},
+  components: { ContextMenuTaskbar },
   data() {
     return {
+      // Context menu Taskbar
+      context_menu_taskbar: false,
+      // Mouse Movement
+      // mouse click location
+      mouseX: 0,
+      mouseY: 0,
       // DateFormat
       month: dateFormat(now, "ddd"),
       date: dateFormat(now, "d"),
@@ -63,6 +86,18 @@ export default {
       time: dateFormat(now, "h:MM"),
       am_pm: dateFormat(now, "TT"),
     };
+  },
+  methods: {
+    handler(e) {
+      this.context_menu_taskbar = true;
+      this.mouseX = e.clientX + "px";
+      this.mouseY = e.clientY + "px";
+      console.log(this.mouseX, this.mouseY);
+      e.preventDefault();
+    },
+    closeHandler() {
+      this.context_menu_taskbar = false;
+    },
   },
 };
 </script>

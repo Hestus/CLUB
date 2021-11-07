@@ -1,7 +1,9 @@
 /* Viga */
 @import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
-/* Raleway */
+/* Raleway - 600 */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
+/* Raleway - 400 */
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 
 :root {
   /* Taskbar */
@@ -22,4 +24,10 @@
 
 .ff_raleway {
   font-family: var(--raleway);
+  font-weight: 600;
+}
+
+.ff_raleway_regular {
+  font-family: var(--raleway);
+  font-weight: 400;
 }
