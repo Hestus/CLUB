@@ -1,9 +1,5 @@
 <template>
-  <div
-    @click.right="handler($event)"
-    @click="closeHandler()"
-    class="homepage"
-  >
+  <div @click.right="handler($event)" @click="closeHandler()" class="homepage">
     <img src="../../assets/images/wallpaper.jpg" alt="wallpaper" />
 
     <!-- Files and folder location -->
@@ -77,12 +73,12 @@ export default {
         {
           id: 1,
           img: "https://i.ibb.co/g60bQdw/file-home-logo.png",
-          folder_name: "manas",
+          folder_name: "Desktop",
         },
         {
           id: 2,
           img: "https://i.ibb.co/g60bQdw/file-home-logo.png",
-          folder_name: "mishra",
+          folder_name: "New Folder",
         },
       ],
       // Create new folder
