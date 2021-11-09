@@ -1,5 +1,9 @@
 <template>
-  <div @click.right="handler($event)" @click="closeHandler()" class="homepage">
+  <div
+    @click.right="handleHomePageContextMenu($event)"
+    @click="handleContextMenuClosing()"
+    class="homepage"
+  >
     <img src="../../assets/images/wallpaper.jpg" alt="wallpaper" />
 
     <!-- Files and folder location -->
@@ -7,11 +11,11 @@
       <div class="homepage_folder_files_location">
         <ul>
           <li
-            @click="closeHandler()"
+            @click="handleContextMenuClosing()"
             tabindex="1"
             v-for="(folder, index) in folders"
             :key="index"
-            @click.right="handlerFolder($event)"
+            @click.right="handleFolderContextMenu($event)"
           >
             <img :src="folder.img" alt="..." />
             <span class="ff_viga span-white">{{ folder.folder_name }}</span>
@@ -19,7 +23,7 @@
         </ul>
         <!-- Context Menu -->
         <ContextMenu
-          @creatingNewFolder="CreatedNewFolder($event)"
+          @creatingNewFolder="createdNewFolder($event)"
           :style="{
             position: 'absolute',
             width: '200px',
@@ -47,7 +51,7 @@
     <NewFolder
       @closeNewFolderNow="closedNewFolder($event)"
       @closeNewFolderOnHandleSubmit="closedNewFolderEvent($event)"
-      v-if="CreateNewFolder === true"
+      v-if="createNewFolder === true"
     />
   </div>
 </template>
@@ -84,10 +88,10 @@ export default {
     ]);
 
     // Create new folder
-    const CreateNewFolder = ref(false);
+    const createNewFolder = ref(false);
 
     // Right Click on homepage Handler
-    const handler = (e) => {
+    function handleHomePageContextMenu(e) {
       if (context_menu_folder.value === false) {
         context_menu.value = true;
         mouseX.value = e.clientX + "px";
@@ -95,49 +99,46 @@ export default {
         console.log(mouseX.value, mouseY.value);
         e.preventDefault();
       }
-    };
+    }
 
     // Right Click over folder handler
-    const handlerFolder = (e) => {
+    function handleFolderContextMenu(e) {
       context_menu.value = false;
       context_menu_folder.value = true;
       mouseX.value = e.clientX + "px";
       mouseY.value = e.clientY - 60 + "px";
       console.log(mouseX.value, mouseY.value);
       e.preventDefault();
-    };
+    }
 
     // Closing Handler
-    const closeHandler = () => {
+    function handleContextMenuClosing() {
       context_menu.value = false;
       context_menu_folder.value = false;
-    };
+    }
 
     // Create new folder
-    const CreatedNewFolder = (foldercreateValue) => {
-      CreateNewFolder.value = foldercreateValue;
-      console.log(this.CreateNewFolder);
-    };
+    function createdNewFolder(foldercreateValue) {
+      createNewFolder.value = foldercreateValue;
+      console.log(this.createNewFolder);
+    }
 
     // closing new folder
-    const closedNewFolder = (folderCloseValue) => {
-      CreateNewFolder.value = folderCloseValue;
-      console.log(CreateNewFolder.value);
-    };
+    function closedNewFolder(folderCloseValue) {
+      createNewFolder.value = folderCloseValue;
+      console.log(createNewFolder.value);
+    }
 
     // Closing new folder event
-    const closedNewFolderEvent = ({
-      closingNewFolderBool,
-      folder_new_name_now,
-    }) => {
-      console.log(closingNewFolderBool, folder_new_name_now);
-      CreateNewFolder.value = closingNewFolderBool;
+    function closedNewFolderEvent({ closingNewFolderBool, currentFolderName }) {
+      console.log(closingNewFolderBool, currentFolderName);
+      createNewFolder.value = closingNewFolderBool;
       folders.value.push({
         id: 3,
         img: "https://i.ibb.co/g60bQdw/file-home-logo.png",
-        folder_name: folder_new_name_now,
+        folder_name: currentFolderName,
       });
-    };
+    }
 
     return {
       context_menu,
@@ -146,16 +147,15 @@ export default {
       mouseX,
       mouseY,
       folders,
-      CreateNewFolder,
-      handler,
-      handlerFolder,
-      closeHandler,
-      CreatedNewFolder,
+      createNewFolder,
+      handleHomePageContextMenu,
+      handleFolderContextMenu,
+      handleContextMenuClosing,
+      createdNewFolder,
       closedNewFolder,
       closedNewFolderEvent,
     };
   },
-
 };
 </script>
 
