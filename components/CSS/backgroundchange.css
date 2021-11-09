@@ -1,0 +1,71 @@
+.backgroundchange {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* background: #000000; */
+  /* opacity: 0.6; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bgc_div {
+  width: 487px;
+  height: 160px;
+  background: rgba(0, 0, 0, 0.41);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(20px);
+  border-radius: 8px;
+}
+
+.bgc_top_title {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bgc_top_title > span {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+}
+
+.bgc_top_title > img {
+  transform: translateX(425px);
+  /* opacity: 1000; */
+  cursor: pointer;
+}
+
+.bgc_input {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bgc_input > input {
+  width: 416px;
+  height: 48px;
+  background: #ffffff;
+  border: 0.5px solid #000000;
+  /* box-sizing: border-box; */
+  border-radius: 5px;
+  padding-left: 10px;
+  outline: none;
+  border: none;
+}
+
+.bgc_input > input:focus {
+  background-color: lightblue;
+}
+
+.bgc_input > input::placeholder {
+  font-family: var(--ff_raleway);
+  font-style: normal;
+  /* font-weight: 600; */
+  font-size: 15px;
+  line-height: 18px;
+}
