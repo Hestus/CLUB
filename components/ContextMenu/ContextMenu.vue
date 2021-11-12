@@ -12,7 +12,7 @@
     </div>
     <hr class="cm_hr" />
     <div class="cm_third">
-      <span class="span-white ff_raleway">Change Background</span>
+      <span @click="changeHomePageBackgroundImage()" class="span-white ff_raleway">Change Background</span>
     </div>
     <hr class="cm_hr" />
     <div class="cm_fourth">
@@ -33,6 +33,9 @@ export default {
     createNewFolder() {
       this.$emit("creatingNewFolder", true);
     },
+    changeHomePageBackgroundImage(){
+      this.$emit("changeHomePageBackground", true);
+    }
   },
 };
 </script>

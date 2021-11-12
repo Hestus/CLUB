@@ -7,13 +7,28 @@
     <span class="span-white ff_raleway_regular">Copy</span>
     <span class="span-white ff_raleway_regular">Create ShortCut</span>
     <span class="span-white ff_raleway_regular">Delete</span>
-    <span class="span-white ff_raleway_regular">Rename</span>
+    <span @click="changingFolderName()" class="span-white ff_raleway_regular"
+      >Rename</span
+    >
     <span class="span-white ff_raleway_regular">Properties</span>
   </div>
 </template>
 
 <script>
-export default {};
+// import { ref } from "vue";
+
+export default {
+  // emits: ["changedFolderName"],
+  setup(_, { emit }) {
+
+    // Changing Folder Name
+    function changingFolderName() {
+      emit("changedFolderName", true);
+    }
+
+    return { changingFolderName };
+  },
+};
 </script>
 
 <style scoped>
